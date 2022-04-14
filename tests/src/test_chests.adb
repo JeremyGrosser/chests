@@ -1,4 +1,6 @@
 with Ada.Assertions; use Ada.Assertions;
+with Ada.Text_IO;
+
 with Chests.Ring_Buffers;
 with Chests.Stacks;
 
@@ -56,4 +58,6 @@ begin
       Delete_Last (RB);
       Assert (Is_Empty (RB));
    end;
+
+   Ada.Text_IO.Put_Line ("PASS");
 end Test_Chests;
