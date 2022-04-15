@@ -51,3 +51,9 @@ end Example;
 
 ## Why not Ada.Containers.Bounded_Vectors?
 The Ada standard library includes some bounded containers. Annex A recommends, but does not require, that implementations of those containers avoid dynamic allocation. Further, these packages depend on other units that are not available with minimal runtimes (aka. ZFP, Light, nostd). Chests have no external dependencies and should work with any Ada runtime.
+
+## Performance
+All Stack and Ring_Buffer operations are O(1) complexity.
+
+## Testing
+The unit tests run with a [set of restrictions](tests/gnat.adc) that ensure these packages work in ZFP and -nostdlib environments. GNATcoverage reports 100% coverage at the stmt+mcdc level.
