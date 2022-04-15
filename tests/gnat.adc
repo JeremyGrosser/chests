@@ -1,4 +1,4 @@
--- ZFP
+--  ZFP
 pragma Restrictions (No_Exception_Propagation);
 pragma Restrictions (No_Exception_Registration);
 pragma Restrictions (No_Implicit_Dynamic_Code);
@@ -8,3 +8,8 @@ pragma Discard_Names;
 
 --  -nostdlib cannot use the secondary stack
 pragma Restrictions (No_Secondary_Stack);
+
+--  Make sure we don't use uninitialized things
+pragma Initialize_Scalars;
+
+pragma Assertion_Policy (Check);

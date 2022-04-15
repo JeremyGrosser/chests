@@ -23,6 +23,7 @@ project Test_Chests is
       when "enabled" =>
          Compile_Checks_Switches :=
            ("-gnatwa",  -- All warnings
+            "-gnatwl",  -- Elaboration warnings
             "-gnatVa",  -- All validity checks
             "-gnatwe"); -- Warnings as errors
       when others => null;
@@ -73,7 +74,8 @@ project Test_Chests is
         Style_Checks_Switches &
         Contracts_Switches &
         ("-gnatw.X", -- Disable warnings for No_Exception_Propagation
-         "-gnatQ");  -- Don't quit. Generate ALI and tree files even if illegalities
+         "-gnatQ",   -- Don't quit. Generate ALI and tree files even if illegalities
+         "-fstack-usage");
       for Local_Configuration_Pragmas use "gnat.adc";
    end Compiler;
 
