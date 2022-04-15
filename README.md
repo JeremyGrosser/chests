@@ -55,5 +55,8 @@ The Ada standard library includes some bounded containers. Annex A recommends, b
 ## Performance
 All Stack and Ring_Buffer operations are O(1) complexity.
 
+## Concurrency
+These data structures must not be modified concurrently. Not all platforms support atomic instructions and ZFP runtimes do not support protected types. The [atomic](https://alire.ada.dev/crates/atomic.html) crate may be helpful.
+
 ## Testing
 The unit tests run with a [set of restrictions](tests/gnat.adc) that ensure these packages work in ZFP and -nostdlib environments. GNATcoverage reports 100% coverage at the stmt+mcdc level.
