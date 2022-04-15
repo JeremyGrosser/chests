@@ -9,9 +9,6 @@ generic
 package Chests.Stacks
    with Preelaborate
 is
-
-   type Element_Array is array (Positive range <>) of Element_Type;
-
    type Stack is private;
 
    function Is_Full
@@ -50,8 +47,10 @@ is
 
 private
 
+   type Element_Array is array (1 .. Capacity) of Element_Type;
+
    type Stack is record
-      Items : Element_Array (1 .. Capacity);
+      Items : Element_Array;
       Last  : Natural := 0;
    end record;
 
