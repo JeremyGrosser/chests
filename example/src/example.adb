@@ -21,7 +21,7 @@ begin
    end loop;
 
    --  Now back in the main thread, we've decided it's time to consume all of
-   --  the characters is the buffer and convert the message to a string.
+   --  the characters in the buffer and convert the message to a string.
    declare
       Receive_Message : String (1 .. Length (RB));
    begin
