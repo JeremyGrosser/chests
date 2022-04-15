@@ -1,0 +1,11 @@
+name = "example"
+description = "Shiny new project"
+version = "0.0.0"
+
+authors = ["Jeremy Grosser"]
+maintainers = ["Jeremy Grosser <jeremy@synack.me>"]
+maintainers-logins = ["JeremyGrosser"]
+
+executables = ["example"]
+[[depends-on]]  # Added by alr
+chests = "~0.1.0"  # Added by alr
