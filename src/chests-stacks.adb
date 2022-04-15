@@ -20,11 +20,6 @@ package body Chests.Stacks is
       return Natural
    is (S.Last);
 
-   function Elements
-      (S : Stack)
-      return Element_Array
-   is (S.Items (1 .. S.Last));
-
    procedure Push
       (S    : in out Stack;
        Item : Element_Type)

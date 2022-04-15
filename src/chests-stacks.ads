@@ -26,10 +26,6 @@ is
       (S : Stack)
       return Natural;
 
-   function Elements
-      (S : Stack)
-      return Element_Array;
-
    procedure Push
       (S    : in out Stack;
        Item : Element_Type)

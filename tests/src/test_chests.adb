@@ -21,7 +21,6 @@ begin
       Assert (Length (S) = 1);
       Push (S, 2);
       Push (S, 3);
-      Assert (Elements (S) = Element_Array'(1, 2, 3));
       Assert (Is_Full (S));
       Pop (S, I);
       Assert (I = 3);

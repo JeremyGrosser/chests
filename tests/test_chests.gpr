@@ -1,4 +1,6 @@
 with "config/test_chests_config.gpr";
+with "chests.gpr";
+
 project Test_Chests is
 
    for Source_Dirs use ("src");
@@ -72,6 +74,7 @@ project Test_Chests is
         Contracts_Switches &
         ("-gnatw.X", -- Disable warnings for No_Exception_Propagation
          "-gnatQ");  -- Don't quit. Generate ALI and tree files even if illegalities
+      for Local_Configuration_Pragmas use Chests'Project_Dir & "gnat.adc";
    end Compiler;
 
    package Binder is
