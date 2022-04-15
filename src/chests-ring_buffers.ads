@@ -72,6 +72,6 @@ private
       Elements : Element_Array;
       First    : Index_Type := Index_Type'First;
       Last     : Index_Type := Index_Type'Last;
-      Used     : Natural := 0;
+      Used     : Natural := 0 with Atomic;
    end record;
 end Chests.Ring_Buffers;

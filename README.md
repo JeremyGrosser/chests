@@ -56,7 +56,13 @@ The Ada standard library includes some bounded containers. Annex A recommends, b
 All Stack and Ring_Buffer operations are O(1) complexity.
 
 ## Concurrency
-These data structures must not be modified concurrently. Not all platforms support atomic instructions and ZFP runtimes do not support protected types. The [atomic](https://alire.ada.dev/crates/atomic.html) crate may be helpful.
+If you need multiple reader/writer concurrency with these data structures, the [atomic](https://alire.ada.dev/crates/atomic.html) crate contains locking primitives. For more advanced lock-free buffers, see [bbqueue](https://alire.ada.dev/crates/bbqueue).
+
+### Ring_Buffers
+The ring buffer can be modified concurrently as long as only one thread is modifying the head or tail of the buffer at a time. For example, you could have a writer calling `Append` and a reader calling `First_Element` and `Delete_First`. Make sure to check `not Is_Full` and `not Is_Empty` before performing these operations. `Clear` is not thread safe.
+
+### Stacks
+Stack operations are not atomic. Put a lock around it.
 
 ## Testing
 The unit tests run with a [set of restrictions](tests/gnat.adc) that ensure these packages work in ZFP and -nostdlib environments. GNATcoverage reports 100% coverage at the stmt+mcdc level.
