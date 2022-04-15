@@ -4,8 +4,8 @@
 --  SPDX-License-Identifier: BSD-3-Clause
 --
 generic
-   Capacity : Positive := 1;
    type Element_Type is private;
+   Capacity : Positive := 1;
 package Chests.Ring_Buffers
    with Preelaborate
 is
