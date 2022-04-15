@@ -14,6 +14,8 @@ begin
    Clear (RB);
 
    --  Pretend we're receiving these characters in a UART interrupt handler
+   --  These operations are not atomic, so if this is were a real interrupt
+   --  handler, you'd need to do some locking or disable interrupts here.
    for Ch of Send_Message loop
       if not Is_Full (RB) then
          Append (RB, Ch);
