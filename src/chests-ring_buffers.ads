@@ -66,7 +66,8 @@ private
    --  Array indicies cannot be a modular type, so we do overflow logic inside
    --  Increment and Decrement.
 
-   type Element_Array is array (Index_Type) of Element_Type;
+   type Element_Array is array (Index_Type) of Element_Type
+      with Pack;
 
    type Ring_Buffer is record
       Elements : Element_Array;

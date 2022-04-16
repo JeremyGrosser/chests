@@ -47,7 +47,8 @@ is
 
 private
 
-   type Element_Array is array (1 .. Capacity) of Element_Type;
+   type Element_Array is array (1 .. Capacity) of Element_Type
+      with Pack;
 
    type Stack is record
       Items : Element_Array;
