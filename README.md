@@ -66,3 +66,21 @@ Stack operations are not atomic. Put a lock around it.
 
 ## Testing
 The unit tests run with a [set of restrictions](tests/gnat.adc) that ensure these packages work in ZFP and -nostdlib environments. GNATcoverage reports 100% coverage at the stmt+mcdc level.
+
+## Changelog
+
+### 0.1.1
+2022-04-17
+
+- Removed `Chests.Stacks.Elements` due to questionable secondary stack usage
+- `Element_Array` is now `with Pack`, considerably reducing memory consumption for small element types
+- `Chests.Ring_Buffers` are now Atomic, with some limitations (see README)
+- Unit tests with ZFP restrictions
+- Added an example program
+- GitHub Actions for CI
+- README updates
+
+### 0.1.0
+2022-04-14
+
+Initial release!
