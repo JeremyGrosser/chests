@@ -7,5 +7,9 @@ maintainers = ["Jeremy Grosser <jeremy@synack.me>"]
 maintainers-logins = ["JeremyGrosser"]
 
 executables = ["example"]
-[[depends-on]]  # Added by alr
-chests = "~0.1.0"  # Added by alr
+
+[[depends-on]]
+chests = "~0.1.1"
+
+[[pins]]
+chests = { path='../' }
