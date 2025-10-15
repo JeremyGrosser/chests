@@ -1,6 +1,6 @@
 name = "chests"
 description = "Chests are bounded containers"
-version = "0.1.1"
+version = "0.2.0"
 
 authors = ["Jeremy Grosser"]
 maintainers = ["Jeremy Grosser <jeremy@synack.me>"]

@@ -8,7 +8,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: alire-project/setup-alire@v1
-      - run: alr build
+      - uses: actions/checkout@v4
+      - uses: alire-project/setup-alire@v5
       - run: cd tests; alr run

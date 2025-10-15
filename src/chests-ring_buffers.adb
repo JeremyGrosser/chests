@@ -1,5 +1,5 @@
 --
---  Copyright (C) 2022 Jeremy Grosser <jeremy@synack.me>
+--  Copyright (C) 2022-2025 Jeremy Grosser <jeremy@synack.me>
 --
 --  SPDX-License-Identifier: BSD-3-Clause
 --
@@ -98,4 +98,67 @@ package body Chests.Ring_Buffers is
       This.Last := Index_Type'Last;
       This.Used := 0;
    end Clear;
+
+   function Contains
+      (This : Ring_Buffer;
+       Item : Element_Type)
+       return Boolean
+   is
+      I : Index_Type := This.First;
+   begin
+      for J in 1 .. This.Used loop
+         if This.Elements (I) = Item then
+            return True;
+         end if;
+         I := Increment (I);
+      end loop;
+      return False;
+   end Contains;
+
+   function Starts_With
+      (This   : Ring_Buffer;
+       Prefix : Element_Array)
+       return Boolean
+   is
+   begin
+      if This.Used < Prefix'Length then
+         return False;
+      end if;
+
+      declare
+         I : Index_Type := This.First;
+      begin
+         for J in Prefix'Range loop
+            if This.Elements (I) /= Prefix (J) then
+               return False;
+            end if;
+            I := Increment (I);
+         end loop;
+         return True;
+      end;
+   end Starts_With;
+
+   function Ends_With
+      (This   : Ring_Buffer;
+       Suffix : Element_Array)
+       return Boolean
+   is
+   begin
+      if This.Used < Suffix'Length then
+         return False;
+      end if;
+
+      declare
+         I : Index_Type := This.Last;
+      begin
+         for J in reverse Suffix'Range loop
+            if This.Elements (I) /= Suffix (J) then
+               return False;
+            end if;
+            I := Decrement (I);
+         end loop;
+         return True;
+      end;
+   end Ends_With;
+
 end Chests.Ring_Buffers;

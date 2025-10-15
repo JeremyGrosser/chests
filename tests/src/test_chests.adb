@@ -1,3 +1,4 @@
+pragma Style_Checks ("M120");
 with Ada.Assertions; use Ada.Assertions;
 with Ada.Text_IO;
 
@@ -26,7 +27,7 @@ begin
       Assert (I = 3, "First item Popped out of stack was incorrect");
       Pop (S, I);
       Assert (I = 2, "Second Pop was incorrect");
-      Assert (not Is_Empty (S) and not Is_Full (S), "Partial stack state was incorrect");
+      Assert (not Is_Empty (S) and then not Is_Full (S), "Partial stack state was incorrect");
       I := Pop (S);
       Assert (I = 1, "Final Pop was incorrect");
       Assert (Is_Empty (S), "Stack not empty after popping all items");
@@ -42,7 +43,7 @@ begin
       Clear (RB);
       Assert (Is_Empty (RB), "Ring not empty after Clear");
       Append (RB, 1);
-      Assert (not Is_Empty (RB) and not Is_Full (RB), "Partially full Ring returned incorrect state");
+      Assert (not Is_Empty (RB) and then not Is_Full (RB), "Partially full Ring returned incorrect state");
       Prepend (RB, 2);
       Append (RB, 3);
       Assert (Last_Element (RB) = 3, "Last_Element returned incorrect value");
@@ -56,6 +57,16 @@ begin
       Assert (Last_Element (RB) = 1, "Last element was incorrect after Delete_Last");
       Delete_Last (RB);
       Assert (Is_Empty (RB), "Ring was not empty after deleting all items");
+
+      Append (RB, 1);
+      Append (RB, 2);
+      Append (RB, 3);
+      Assert (Contains (RB, 3), "Contains did not match last element");
+      Assert (not Contains (RB, 4), "Contains matched incorrect value");
+      Assert (Starts_With (RB, (1, 2)), "Starts_With positive test failed");
+      Assert (not Starts_With (RB, (2, 3)), "Starts_With negative test failed");
+      Assert (Ends_With (RB, (2, 3)), "Ends_With positive test failed");
+      Assert (not Ends_With (RB, (3, 2)), "Ends_With negative test failed");
    end;
 
    Ada.Text_IO.Put_Line ("PASS");

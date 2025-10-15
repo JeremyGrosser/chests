@@ -53,7 +53,24 @@ end Example;
 The Ada standard library includes some bounded containers. Annex A recommends, but does not require, that implementations of those containers avoid dynamic allocation. Further, these packages depend on other units that are not available with minimal runtimes (aka. ZFP, Light, nostd). Chests have no external dependencies and should work with any Ada runtime.
 
 ## Performance
-All Stack and Ring_Buffer operations are O(1) complexity.
+All Stack and operations are O(1) complexity.
+
+The following Ring_Buffer operations are O(1) complexity:
+- Length
+- Is_Full
+- Is_Empty
+- First_Element
+- Last_Element
+- Prepend
+- Append
+- Delete_First
+- Delete_Last
+- Clear
+
+The following Ring_Buffer operations are O(N) complexity:
+- Contains
+- Starts_With
+- Ends_With
 
 ## Concurrency
 If you need multiple reader/writer concurrency with these data structures, the [atomic](https://alire.ada.dev/crates/atomic.html) crate contains locking primitives. For more advanced lock-free buffers, see [bbqueue](https://alire.ada.dev/crates/bbqueue).
@@ -68,6 +85,13 @@ Stack operations are not atomic. Put a lock around it.
 The unit tests run with a [set of restrictions](tests/gnat.adc) that ensure these packages work in ZFP and -nostdlib environments. GNATcoverage reports 100% coverage at the stmt+mcdc level.
 
 ## Changelog
+
+### 0.2.0
+2025-10-15
+
+- Add `Contains`, `Starts_With`, `Ends_With` to `Chests.Ring_Buffers`
+- Regenerated .gpr files with modern alire
+- Update GitHub Actions to setup-alire v5
 
 ### 0.1.1
 2022-04-17

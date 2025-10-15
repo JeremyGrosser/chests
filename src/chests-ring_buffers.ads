@@ -1,5 +1,5 @@
 --
---  Copyright (C) 2022 Jeremy Grosser <jeremy@synack.me>
+--  Copyright (C) 2022-2025 Jeremy Grosser <jeremy@synack.me>
 --
 --  SPDX-License-Identifier: BSD-3-Clause
 --
@@ -59,18 +59,32 @@ is
       (This : in out Ring_Buffer)
    with Post => Is_Empty (This);
 
+   function Contains
+      (This : Ring_Buffer;
+       Item : Element_Type)
+       return Boolean;
+
+   subtype Index_Type is Positive range 1 .. Capacity;
+   type Element_Array is array (Index_Type range <>) of Element_Type;
+
+   function Starts_With
+      (This   : Ring_Buffer;
+       Prefix : Element_Array)
+       return Boolean;
+
+   function Ends_With
+      (This   : Ring_Buffer;
+       Suffix : Element_Array)
+       return Boolean;
+
 private
-   type Index_Type is new Positive range 1 .. Capacity;
    function Increment (I : Index_Type) return Index_Type;
    function Decrement (I : Index_Type) return Index_Type;
    --  Array indicies cannot be a modular type, so we do overflow logic inside
    --  Increment and Decrement.
 
-   type Element_Array is array (Index_Type) of Element_Type
-      with Pack;
-
    type Ring_Buffer is record
-      Elements : Element_Array;
+      Elements : Element_Array (1 .. Capacity);
       First    : Index_Type := Index_Type'First;
       Last     : Index_Type := Index_Type'Last;
       Used     : Natural := 0 with Atomic;
